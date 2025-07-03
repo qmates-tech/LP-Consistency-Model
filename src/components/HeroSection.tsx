@@ -13,10 +13,15 @@ const HeroSection = () => {
         <p className="text-lg text-neutral-white/80 mb-10 max-w-3xl mx-auto">
           Misura in 3 minuti la coerenza tra Business Strategy, Struttura Organizzativa e Architettura Software e ricevi subito un punteggio personalizzato sulla tua azienda.
         </p>
-        <Button 
-          size="lg" 
-          className="bg-neutral-white text-creative-green hover:bg-neutral-white/90 text-lg px-8 py-4 shadow-elegant"
-        >
+        <p className="text-lg text-neutral-white/80 mb-10 max-w-3xl mx-auto">
+          Pensato per CEO e CTO di scale-up digitali tra i 10 e i 50 dev.
+        </p>
+        <Button size="lg" className="bg-neutral-white text-creative-green hover:bg-neutral-white/90 text-lg px-8 py-4 shadow-elegant" onClick={() => {
+          const element = document.getElementById('consistency-score');
+          if (element) {
+            element.scrollIntoView({ behavior: 'smooth' });
+          }
+        }}>
           Scopri il tuo Score
         </Button>
         
