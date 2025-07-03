@@ -61,7 +61,27 @@ export default {
 					'accent-foreground': 'hsl(var(--sidebar-accent-foreground))',
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
+				},
+				// Custom design system colors
+				sage: {
+					light: 'hsl(var(--sage-light))',
+					dark: 'hsl(var(--sage-dark))'
+				},
+				creative: {
+					green: 'hsl(var(--creative-green))',
+					yellow: 'hsl(var(--creative-yellow))'
+				},
+				neutral: {
+					white: 'hsl(var(--neutral-white))'
 				}
+			},
+			backgroundImage: {
+				'gradient-primary': 'var(--gradient-primary)',
+				'gradient-subtle': 'var(--gradient-subtle)'
+			},
+			boxShadow: {
+				'elegant': 'var(--shadow-elegant)',
+				'card': 'var(--shadow-card)'
 			},
 			borderRadius: {
 				lg: 'var(--radius)',
