@@ -3,7 +3,7 @@ import ProblemSection from "@/components/ProblemSection";
 import TestSection from "@/components/TestSection";
 import ConsistencyModelSection from "@/components/ConsistencyModelSection";
 import WhyNowSection from "@/components/WhyNowSection";
-import TestimonialsSection from "@/components/TestimonialsSection";
+import TallyForm from "@/components/TallyFormEmbed";
 import FAQSection from "@/components/FAQSection";
 import FinalCTASection from "@/components/FinalCTASection";
 
@@ -15,7 +15,7 @@ const Index = () => {
       <TestSection />
       <ConsistencyModelSection />
       <WhyNowSection />
-      <TestimonialsSection />
+      <TallyForm />
       <FAQSection />
       <FinalCTASection />
     </div>

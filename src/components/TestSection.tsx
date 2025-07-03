@@ -55,7 +55,12 @@ const TestSection = () => {
         </div>
 
         <div className="text-center">
-          <Button size="lg" className="bg-secondary text-secondary-foreground hover:bg-secondary/90 text-lg px-8 py-4" >
+          <Button size="lg" className="bg-secondary text-secondary-foreground hover:bg-secondary/90 text-lg px-8 py-4" onClick={() => {
+              const element = document.getElementById('test-section');
+              if (element) {
+                element.scrollIntoView({ behavior: 'smooth' });
+              }
+            }}>
             Compila il Consistency Model
           </Button>
         </div>
