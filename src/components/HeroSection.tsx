@@ -8,11 +8,10 @@ const HeroSection = () => {
           Delivery lenta, team stressato o architettura bloccata?
         </h1>
         <p className="text-xl lg:text-2xl text-neutral-white/90 mb-8 max-w-4xl mx-auto leading-relaxed">
-          Scopri dove si inceppa davvero la tua scale-up con un test gratuito in 3 minuti.
+          Scopri dove si inceppa la tua scale-up.
         </p>
         <p className="text-lg text-neutral-white/80 mb-10 max-w-3xl mx-auto">
-          Ricevi subito un punteggio personalizzato sulla coerenza tra strategia, team e software. 
-          E se vuoi, accedi al nostro framework esclusivo per sbloccare velocità e innovazione.
+          Misura in 3 minuti la coerenza tra Business Strategy, Struttura Organizzativa e Architettura Software e ricevi subito un punteggio personalizzato sulla tua azienda.
         </p>
         <Button 
           size="lg" 

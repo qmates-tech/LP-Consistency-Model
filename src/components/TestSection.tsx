@@ -4,11 +4,11 @@ import { Clock, Target, TrendingUp } from "lucide-react";
 
 const TestSection = () => {
   return (
-    <section className="py-16 lg:py-24 bg-muted/30">
+    <section className="py-16 lg:py-24 bg-muted/30" id="consistency-score">
       <div className="container mx-auto px-4">
         <div className="text-center mb-12">
           <h2 className="text-3xl lg:text-4xl font-bold text-primary mb-6">
-            Consistency Score: il test gratuito
+            Consistency Score
           </h2>
           <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
             6 domande strategiche per misurare l'allineamento della tua scale-up. 
@@ -24,7 +24,7 @@ const TestSection = () => {
             </CardHeader>
             <CardContent>
               <CardDescription>
-                Test veloce e mirato per CEO e CTO di scale-up tech
+                Test veloce e mirato per CEO di scale-up tech
               </CardDescription>
             </CardContent>
           </Card>
@@ -44,7 +44,7 @@ const TestSection = () => {
           <Card className="text-center shadow-card">
             <CardHeader>
               <TrendingUp className="w-12 h-12 text-creative-green mx-auto mb-4" />
-              <CardTitle>Framework esclusivo</CardTitle>
+              <CardTitle>Modello esclusivo</CardTitle>
             </CardHeader>
             <CardContent>
               <CardDescription>
@@ -55,11 +55,8 @@ const TestSection = () => {
         </div>
 
         <div className="text-center">
-          <Button 
-            size="lg" 
-            className="bg-secondary text-secondary-foreground hover:bg-secondary/90 text-lg px-8 py-4"
-          >
-            Fai il test →
+          <Button size="lg" className="bg-secondary text-secondary-foreground hover:bg-secondary/90 text-lg px-8 py-4" >
+            Compila il Consistency Model
           </Button>
         </div>
       </div>

@@ -8,7 +8,9 @@ const ProblemSection = () => {
           </h2>
           <div className="text-lg lg:text-xl text-muted-foreground leading-relaxed space-y-6">
             <p>
-              <strong>Anche se il team è competente, la delivery rallenta.</strong> 
+              <strong>Anche se il team è competente, la delivery rallenta.</strong>
+            </p>
+            <p>
               Anche se assumi, la qualità non cresce. 
               Se il prodotto perde smalto, spesso il problema non è il team, 
               ma la <span className="text-secondary font-semibold">mancanza di coerenza tra strategia, organizzazione e software</span>.

@@ -12,8 +12,7 @@ const ConsistencyModelSection = () => {
             Cos'è il Consistency Model
           </h2>
           <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
-            Il framework proprietario di QMates, usato dalle scale-up tech più innovative 
-            per allineare strategia, team e architettura software.
+            Il modello proprietario di QMates, usato dalle scale-up tech più innovative per allineare business strategy, struttura organizzativa e architettura software.
           </p>
         </div>
 
@@ -57,7 +56,7 @@ const ConsistencyModelSection = () => {
 
         <div className="bg-sage-light p-8 rounded-lg text-center">
           <h3 className="text-xl font-semibold text-primary mb-4">
-            Framework già utilizzato per aiutare scale-up tech a:
+            Modello già utilizzato per aiutare scale-up tech a:
           </h3>
           <div className="grid md:grid-cols-3 gap-6 text-muted-foreground">
             <div>✓ Migliorare time-to-market del 40%</div>
