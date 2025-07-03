@@ -20,6 +20,17 @@ const HeroSection = () => {
         >
           Scopri il tuo Score
         </Button>
+        
+        {/* Parallax Image */}
+        <div className="relative mt-16 overflow-hidden">
+          <div className="transform translate-y-8 opacity-90 hover:translate-y-4 transition-transform duration-1000 ease-out">
+            <img 
+              src="/lovable-uploads/2e7b84db-09f5-4481-9c32-8900fc70a841.png"
+              alt="Consistency Model Framework"
+              className="mx-auto max-w-4xl w-full h-auto rounded-lg shadow-elegant"
+            />
+          </div>
+        </div>
       </div>
     </section>
   );
