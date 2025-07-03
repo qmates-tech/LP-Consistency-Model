@@ -8,32 +8,28 @@ import {
 const FAQSection = () => {
   const faqs = [
     {
-      question: "Quanto tempo richiede il test?",
-      answer: "Solo 3 minuti. Il test è composto da 6 domande strategiche mirate, pensate per CEO e CTO di scale-up tech con team di 10-50 sviluppatori."
+      question: "Riceverò subito il Consistency Model?",
+      answer: "Sì! Riceverai il tuo risultato e il modello via mail per poterlo ritestare aumentando variabili e dettagli."
     },
     {
-      question: "Che tipo di punteggio ricevo?",
-      answer: "Ricevi un Consistency Score che misura l'allineamento tra strategia business, struttura organizzativa e architettura software. Include un mini-report con raccomandazioni personalizzate."
+      question: "A chi è destinato questo test?",
+      answer: "A CEO, CTO e Product Leader di scale-up tech tra 10 e 50 dev, che vogliono migliorare velocità, qualità e scalabilità."
     },
     {
-      question: "Il test è davvero gratuito?",
-      answer: "Sì, completamente gratuito. Nessun costo nascosto, nessun impegno. L'unico requisito è essere CEO o CTO di una scale-up tech."
-    },
-    {
-      question: "Cos'è il Consistency Model e come posso ottenerlo?",
-      answer: "È il framework proprietario di QMates per allineare strategia, team e software nelle scale-up. È disponibile solo su richiesta dopo aver completato il test e prenotato una call di approfondimento."
+      question: "Quanto dura il test?",
+      answer: "Meno di 3 minuti. Sono solo 6 domande multiple, pensate per identificare rapidamente il tuo livello di coerenza organizzativa."
     },
     {
       question: "I miei dati sono al sicuro?",
-      answer: "Assolutamente sì. Utilizziamo i tuoi dati solo per generare il tuo score personalizzato. Non condividiamo informazioni con terze parti e puoi richiedere la cancellazione in qualsiasi momento."
+      answer: "Usiamo le risposte solo in forma aggregata per identificare pattern. Non verranno mai condivisi con terzi e non riceverai spam."
     },
     {
-      question: "Per che tipo di aziende è pensato?",
-      answer: "Scale-up tech con team di sviluppo di 10-50 persone, che stanno affrontando sfide di crescita, delivery o allineamento strategico. Ideale per chi ha superato la fase di MVP e sta scalando."
+      question: "Cosa riceverò esattamente dopo il test?",
+      answer: "Il tuo punteggio (Consistency Score), un mini-report con i tuoi punti di forza e fragilità e l'accesso al nostro modello esclusivo via mail"
     },
     {
-      question: "Cosa succede dopo il test?",
-      answer: "Ricevi immediatamente il tuo Consistency Score via email. Se interessato, puoi prenotare una call gratuita di 30 minuti per approfondire i risultati e richiedere accesso al framework completo."
+      question: "Perché dovrei fidarmi del vostro modello?",
+      answer: "Il Consistency Model nasce da oltre 10 anni di lavoro con startup e scale-up tech. È stato validato sul campo con team da 5 a 50 dev, aiutandoli a migliorare time-to-market, qualità del codice e motivazione del team."
     }
   ];
 
