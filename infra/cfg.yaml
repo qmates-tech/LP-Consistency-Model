@@ -1,0 +1,38 @@
+#cloud-config
+users:
+  - name: deploy
+    groups: sudo
+    sudo: ALL=(ALL) NOPASSWD:ALL
+    shell: /bin/bash
+    ssh_authorized_keys:
+      - "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIEoK7SM8UpJ5eXZXGlMvCLl+jEzzU0BsF1z2k6jXar4E deploy-key"
+
+package_update: true
+package_upgrade: true
+packages:
+  - nginx
+  - rsync
+  - ufw
+
+write_files:
+  - path: /etc/nginx/sites-available/landing
+    permissions: "0644"
+    content: |
+      server {
+        listen 80 default_server;
+        listen [::]:80 default_server;
+        server_name _;
+        root /var/www/landing;
+        index index.html;
+        location / { try_files $uri $uri/ /index.html; }
+        location /healthz { return 200 "ok\n"; }
+      }
+
+runcmd:
+  - ln -s /etc/nginx/sites-available/landing /etc/nginx/sites-enabled/landing
+  - mkdir -p /var/www/landing
+  - chown deploy:deploy /var/www/landing
+  - systemctl reload nginx
+  - ufw allow "OpenSSH"
+  - ufw allow "Nginx Full"
+  - ufw --force enable

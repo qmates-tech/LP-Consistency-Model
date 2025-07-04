@@ -1,0 +1,23 @@
+name: release
+on: push
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v2
+        with: { version: 9 }
+      - run: pnpm i
+      - run: pnpm run build
+      - name: sync
+        env:
+          HOSTS: "188.245.151.119"
+          SSH_USER: deploy
+          SSH_KEY: ${{ secrets.SSH_DEPLOY_PRIV_KEY }}
+        run: |
+          echo "$SSH_KEY" > id_rsa && chmod 600 id_rsa
+          for h in $HOSTS; do
+            rsync -az --delete -e "ssh -i id_rsa -o StrictHostKeyChecking=no" dist/ $SSH_USER@$h:/var/www/landing/
+            ssh -i id_rsa -o StrictHostKeyChecking=no $SSH_USER@$h 'sudo systemctl reload nginx'
+            sleep 2
+          done
