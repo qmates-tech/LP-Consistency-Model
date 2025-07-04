@@ -3,15 +3,31 @@ on: push
 jobs:
   build:
     runs-on: ubuntu-latest
+    env:
+      HCLOUD_TOKEN: ${{ secrets.HCLOUD_PROVISIONING_KEY_FOR_WORKFLOWS }}
     steps:
       - uses: actions/checkout@v4
       - uses: pnpm/action-setup@v2
         with: { version: 9 }
       - run: pnpm i
       - run: pnpm run build
+
+      # ⇩ nuovo step ----------------------------------------------------------
+      - name: get landing hosts
+        id: hosts
+        run: |
+          curl -fsSL https://github.com/hetznercloud/cli/releases/latest/download/hcloud-linux-amd64.tar.gz \
+            | tar -xz -C /usr/local/bin hcloud
+          HOSTS=$(hcloud server list \
+                    --selector role=landing \
+                    --output columns=ipv4 \
+                  | tail -n +2 | tr '\n' ' ')
+          echo "HOSTS=$HOSTS" >> "$GITHUB_OUTPUT"
+      # ----------------------------------------------------------------------
+
       - name: sync
         env:
-          HOSTS: "188.245.151.119"
+          HOSTS: ${{ steps.hosts.outputs.HOSTS }}
           SSH_USER: deploy
           SSH_KEY: ${{ secrets.SSH_DEPLOY_PRIV_KEY }}
         run: |
