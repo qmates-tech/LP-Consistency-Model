@@ -21,7 +21,7 @@ write_files:
       server {
         listen 80 default_server;
         listen [::]:80 default_server;
-        server_name _;
+        server_name landing.qmates.tech;
         root /var/www/landing;
         index index.html;
         location / { try_files $uri $uri/ /index.html; }
