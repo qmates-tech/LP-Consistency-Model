@@ -27,7 +27,8 @@ jobs:
           SSH_DEPLOY_PUB_KEY: ${{ secrets.SSH_DEPLOY_PUB_KEY }}
         run: |
           # Verifica presenza chiave SSH in Hetzner
-          if hcloud ssh-key list --no-header --output columns=name \
+          if hcloud ssh-key list --output columns=name \
+             | tail -n +2 \
              | grep -Fqx "$SSH_KEY_NAME"; then
             echo "SSH key '$SSH_KEY_NAME' already present"
           else
