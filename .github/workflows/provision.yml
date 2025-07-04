@@ -1,12 +1,11 @@
 name: infra
 on:
-  workflow_dispatch:        # lancio manuale
+  workflow_dispatch:
     inputs:
       apply:
         description: "Esegui provisioning"
         required: true
         default: "yes"
-
 jobs:
   provision:
     if: github.event.inputs.apply == 'yes'
@@ -18,16 +17,16 @@ jobs:
 
       - name: install hcloud CLI
         run: |
-          sudo curl -fsSL https://github.com/hetznercloud/cli/releases/latest/download/hcloud-linux-amd64.tar.gz | \
-            tar -xz -C /usr/local/bin hcloud
+          curl -fsSL https://github.com/hetznercloud/cli/releases/latest/download/hcloud-linux-amd64.tar.gz | tar -xz -C /usr/local/bin hcloud
           hcloud version
 
-      - name: ensure ssh key exists (optional)
+      - name: ensure ssh key exists
         env:
           HCLOUD_TOKEN: ${{ secrets.HCLOUD_PROVISIONING_KEY_FOR_WORKFLOWS }}
-          PUB: ${{ secrets.SSH_DEPLOY_PUB_KEY }}
+          SSH_KEY_NAME: "deploy key"
+          SSH_DEPLOY_PUB_KEY: ${{ secrets.SSH_DEPLOY_PUB_KEY }}
         run: |
-          # verifica esatta (match letterale, linea intera)
+          # Verifica presenza chiave SSH in Hetzner
           if hcloud ssh-key list --no-header --output columns=name \
              | grep -Fqx "$SSH_KEY_NAME"; then
             echo "SSH key '$SSH_KEY_NAME' already present"
