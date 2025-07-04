@@ -15,7 +15,7 @@ LB_NAME=lb-landing
 SERVERS=(web-1 web-2)
 SSH_KEY_NAME="deploy key"
 USER_DATA=infra/cfg.yaml
-CERT_NAME=landing-cert          # managed cert previously created for landing.qmates.tech
+CERT_NAME=qmates-all
 
 command -v jq >/dev/null 2>&1 || { echo "jq is required" >&2; exit 1; }
 
