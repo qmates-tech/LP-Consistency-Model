@@ -54,6 +54,6 @@ jobs:
         run: |
           for h in $HOSTS; do
             rsync -az --delete -e "ssh -i id_rsa -o StrictHostKeyChecking=no" dist/ $SSH_USER@$h:/var/www/landing/
-            ssh -i id_rsa -o StrictHostKeyChecking=no $SSH_USER@$h 'sudo systemctl reload nginx'
+            ssh -i id_rsa -o StrictHostKeyChecking=no $SSH_USER@$h 'systemctl reload nginx || { echo "[NGINX RELOAD FAILED]"; systemctl status nginx.service --no-pager; journalctl -xeu nginx.service --no-pager -n 50; exit 1; }'
             sleep 2
           done
