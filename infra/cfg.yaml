@@ -21,7 +21,7 @@ write_files:
       server {
         listen 80 default_server;
         listen [::]:80 default_server;
-        server_name landing.qmates.tech;
+        server_name landing.qmates.tech landings.qmates.tech;
         root /var/www/landing;
         index index.html;
         location / { try_files $uri $uri/ /index.html; }
@@ -29,6 +29,7 @@ write_files:
       }
 
 runcmd:
+  - rm -f /etc/nginx/sites-enabled/default
   - ln -s /etc/nginx/sites-available/landing /etc/nginx/sites-enabled/landing
   - mkdir -p /var/www/landing
   - chown deploy:deploy /var/www/landing
