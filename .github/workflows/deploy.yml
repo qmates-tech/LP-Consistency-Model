@@ -45,7 +45,7 @@ jobs:
       - name: Get landing hosts
         id: hosts
         run: |
-          HOSTS=$(hcloud server list --selector label=role=landing --output columns=ipv4 | tail -n +2 | tr '\n' ' ')
+          HOSTS=$(hcloud server list --selector role=landing --output columns=ipv4 | tail -n +2 | tr '\n' ' ')
           echo "HOSTS=$HOSTS" >> "$GITHUB_OUTPUT"
       - name: Sync to landing servers
         env:
