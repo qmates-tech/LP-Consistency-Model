@@ -4,41 +4,56 @@ on:
     branches: [main]
 jobs:
   build:
+    name: Build and Package
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v2
+        with:
+          version: 9
+      - name: Install dependencies & build
+        run: |
+          pnpm install --frozen-lockfile
+          pnpm run build
+      - name: Upload build artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: landing-dist
+          path: dist/
+
+  deploy:
+    name: Deploy to Landing Servers
+    needs: build
     runs-on: ubuntu-latest
     env:
       HCLOUD_TOKEN: ${{ secrets.HCLOUD_PROVISIONING_KEY_FOR_WORKFLOWS }}
     steps:
       - uses: actions/checkout@v4
-
-      - name: Setup pnpm
-        uses: pnpm/action-setup@v2
+      - name: Download build artifact
+        uses: actions/download-artifact@v3
         with:
-          version: 9
-
-      - name: Install dependencies & build
+          name: landing-dist
+          path: dist/
+      - name: Setup SSH key
         run: |
-          pnpm install --frozen-lockfile
-          pnpm run build
-
+          echo "${{ secrets.SSH_DEPLOY_PRIV_KEY }}" > id_rsa
+          chmod 600 id_rsa
       - name: Install hcloud CLI
         run: |
           curl -fsSL https://github.com/hetznercloud/cli/releases/latest/download/hcloud-linux-amd64.tar.gz | tar -xz -C /usr/local/bin hcloud
-
       - name: Get landing hosts
         id: hosts
         run: |
           HOSTS=$(hcloud server list --selector label=role=landing --output columns=ipv4 | tail -n +2 | tr '\n' ' ')
           echo "HOSTS=$HOSTS" >> "$GITHUB_OUTPUT"
-
       - name: Sync to landing servers
         env:
           HOSTS: ${{ steps.hosts.outputs.HOSTS }}
           SSH_USER: deploy
-          SSH_KEY: ${{ secrets.SSH_DEPLOY_PRIV_KEY }}
         run: |
-          echo "$SSH_KEY" > id_rsa && chmod 600 id_rsa && \
-          for h in $HOSTS; do \
-            rsync -az --delete -e "ssh -i id_rsa -o StrictHostKeyChecking=no" dist/ $SSH_USER@$h:/var/www/landing/ && \
-            ssh -i id_rsa -o StrictHostKeyChecking=no $SSH_USER@$h 'sudo systemctl reload nginx' && \
-            sleep 2; \
+          for h in $HOSTS; do
+            rsync -az --delete -e "ssh -i id_rsa -o StrictHostKeyChecking=no" dist/ $SSH_USER@$h:/var/www/landing/
+            ssh -i id_rsa -o StrictHostKeyChecking=no $SSH_USER@$h 'sudo systemctl reload nginx'
+            sleep 2
           done
