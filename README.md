@@ -4,6 +4,13 @@
 
 **URL**: https://lovable.dev/projects/7dbc4a83-2792-4565-a6db-e9fa96b485b5
 
+## How can I deploy?
+
+git action are in place.
+location [.github/workflows](.github/workflows)
+and
+infrastructure code [infra](infra)
+
 ## How can I edit this code?
 
 There are several ways of editing your application.
